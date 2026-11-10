@@ -17,6 +17,8 @@ python app.py                                         # http://localhost:5000
 Sem `DATABASE_URL`, o app usa um SQLite local (`bebidas.db`), útil para testar.
 
 ## 3. Publicar
+**Vercel (recomendado):** suba o projeto no GitHub, importe o repositório em vercel.com/new (o `vercel.json` já posiciona a função na região `cle1` / `us-east-2`, junto ao banco do Neon) e adicione `DATABASE_URL` (e opcionalmente `ACCESS_CODE`) em *Environment Variables*.
+
 **Render:** suba o projeto no GitHub, crie um *Blueprint* apontando para o repositório (ele lê o `render.yaml`) e preencha `DATABASE_URL` e `ACCESS_CODE` quando pedido.
 
 **Railway:** crie um projeto a partir do repositório (usa o `Procfile`) e adicione `DATABASE_URL` e `ACCESS_CODE` em Variables.

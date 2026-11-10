@@ -16,7 +16,8 @@ ACCESS_CODE = os.environ.get("ACCESS_CODE", "")
 
 
 def database_url():
-    url = os.environ.get("DATABASE_URL", "sqlite:///bebidas.db")
+    default_db = "sqlite:////tmp/bebidas.db" if os.environ.get("VERCEL") else "sqlite:///bebidas.db"
+    url = os.environ.get("DATABASE_URL", default_db)
     for prefix in ("postgres://", "postgresql://"):
         if url.startswith(prefix):
             return "postgresql+psycopg2://" + url[len(prefix):]
