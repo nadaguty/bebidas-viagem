@@ -17,7 +17,10 @@ ACCESS_CODE = os.environ.get("ACCESS_CODE", "")
 
 def database_url():
     url = os.environ.get("DATABASE_URL", "sqlite:///bebidas.db")
-    return url.replace("postgres://", "postgresql://", 1) if url.startswith("postgres://") else url
+    for prefix in ("postgres://", "postgresql://"):
+        if url.startswith(prefix):
+            return "postgresql+psycopg2://" + url[len(prefix):]
+    return url
 
 
 app = Flask(__name__)
